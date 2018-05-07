@@ -8,34 +8,31 @@ class ReviewsController < ApplicationController
   def show
     @destination = Destination.find(params[:id])
     @review = Review.find(params[:id])
+    json_response(@destination)
   end
 
   def create
     @destination = Destination.find(params[:destination_id])
-    @review = @destination.destinations.new(review_params)
-    if @destination.save
-      flash[:notice] = "Destination successfully added!"
-      redirect_to destination_path(@destination)
-    else
-      render :new
-    end
+    @review = @destination.reviews.create!(review_params)
+    json_response(@review, :created)
   end
 
   def update
     @destination = Destination.find(params[:destination_id])
     @review = Review.find(params[:id])
-    if @review.update(review_params)
-      redirect_to destination_path(@destination)
+    if @review.update!(review_params)
+      render status: 200, json: { message: 'Your review has been updated successfully'}
     else
-      render :edit
+      render status: 422, json: { message: 'Review not updated error 422'}
     end
   end
 
   def destroy
     @destination = Destination.find(params[:destination_id])
     @review = Review.find(params[:id])
-    @review.destroy
-    redirect_to destination_path(@destination)
+    if @review.destroy
+      render status: 200, json: {message: 'Your review has been destroyed'}
+    end
   end
 
   private
