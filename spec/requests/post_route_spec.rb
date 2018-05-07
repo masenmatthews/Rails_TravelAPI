@@ -19,11 +19,7 @@ describe 'post a destination route', :type => :request do
     end
 
     it 'returns a created status' do
-      # binding.pry
       expect(response).to have_http_status(:created)
     end
 
-    # country("USA")
-    # city("Seattle")
-    # region("WA")
 end

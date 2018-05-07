@@ -5,10 +5,10 @@ describe 'get all destinations route', :type => :request do
 
   before { get '/destinations'}
 
-  it 'returns all destinations' do
-    # binding.pry
-    expect(JSON.parse(response.body).size).to eq(20)
-  end
+  # old test below changed how api works not valid now
+  # it 'returns all destinations' do
+  #   expect(JSON.parse(response.body).size).to eq(20)
+  # end
 
   it 'returns status do 200' do
     expect(response).to have_http_status(:success)
