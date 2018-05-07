@@ -35,6 +35,6 @@ class DestinationsController < ApplicationController
   end
 
   def destination_params
-    params.permit(:author, :content)
+    params.permit(:country, :city, :region)
   end
 end
