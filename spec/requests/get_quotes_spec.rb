@@ -6,6 +6,7 @@ describe 'get all destinations route', :type => :request do
   before { get '/destinations'}
 
   it 'returns all destinations' do
+    # binding.pry
     expect(JSON.parse(response.body).size).to eq(20)
   end
 
