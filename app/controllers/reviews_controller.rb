@@ -23,6 +23,7 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     if @review.update!(review_params)
       render status: 200, json: { message: 'Your review has been updated successfully'}
+      # json_response(@review)
     else
       render status: 422, json: { message: 'Review not updated error 422'}
     end
@@ -42,6 +43,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.permit(:title, :rating, :body )
+    params.permit(:title, :rating, :text_body )
   end
 end
