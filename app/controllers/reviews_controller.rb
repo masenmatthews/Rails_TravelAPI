@@ -7,15 +7,14 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @destination = Destination.find(params[:id])
+    @destination = Destination.find(params[:destination_id])
     @review = Review.find(params[:id])
-    json_response(@destination)
+    json_response(@review)
   end
 
   def create
     @destination = Destination.find(params[:destination_id])
     @review = @destination.reviews.create!(review_params)
-    binding.pry
     json_response(@review, :created)
   end
 
