@@ -1,5 +1,6 @@
 class Destination < ApplicationRecord
   validates :country, :region, :city, :presence => true
+  has_many :reviews
   def self.search(country)
     matches = []
     Destination.all.each do |single_record|

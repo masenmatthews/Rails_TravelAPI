@@ -1,8 +1,9 @@
 class ReviewsController < ApplicationController
 
   def index
-    @destinations = Destination.all
-    json_response(@destinations)
+    @destinations = Destination.find(params[:destination_id])
+    @reviews = @destinations.reviews
+    json_response(@reviews)
   end
 
   def show
@@ -14,6 +15,7 @@ class ReviewsController < ApplicationController
   def create
     @destination = Destination.find(params[:destination_id])
     @review = @destination.reviews.create!(review_params)
+    binding.pry
     json_response(@review, :created)
   end
 
@@ -41,6 +43,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.permit(:title, :rating, :body)
+    params.permit(:title, :rating, :body )
   end
 end
