@@ -18,7 +18,7 @@ class Seed
     Review.destroy_all
 
     20.times do |i|
-      destination = Destination.create!(
+      Destination.create!(
         country: Faker::Address.country,
         city: Faker::Address.city,
         region: Faker::Address.community
