@@ -14,17 +14,17 @@ class Seed
   end
 
   def generate_destinations
-    Destination.destroy_all
-    Review.destroy_all
+    # Destination.destroy_all
+    # Review.destroy_all
 
-    50.times do |i|
+    20.times do |i|
       Destination.create!(
         country: Faker::Address.country,
         city: Faker::Address.city,
         region: Faker::Address.community
       )
       @destination_id = Destination.last.id
-      10.times do |i|
+      5.times do |i|
       @title = Faker::Hipster.sentence(3, true)
       @text_body = Faker::TheFreshPrinceOfBelAir.quote
       @rating = Faker::Number.between(1, 5)
